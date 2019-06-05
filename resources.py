@@ -26,7 +26,14 @@ class UserRegistration(Resource):
 class UserLogin(Resource):
     def post(self):
         data = parser.parse_args()
-        return data
+        username = data['username']
+        current_user = UserModel.find_by_username(username)
+        if not current_user:
+            return {'message': f'User {username} doesn\'t exist'}
+        if data['password'] == current_user.password:
+            return {'message': f'Logged in as {username}'}
+        else:
+            return {'message': "Wrong credentials"}
 
 
 class UserLogoutAccess(Resource):
@@ -45,7 +52,7 @@ class TokenRefresh(Resource):
 
 
 class AllUsers(Resource):
-    def post(self):
+    def get(self):
         return {'message': 'List of users'}
 
     def delete(self):
