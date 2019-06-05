@@ -17,7 +17,7 @@ class UserRegistration(Resource):
 
         new_user = UserModel(
             username=username,
-            password=data['password']
+            password=UserModel.generate_hash(data['password'])
         )
         new_user.save_to_db()
         return {'message': f'User {username} was created'}
@@ -30,7 +30,7 @@ class UserLogin(Resource):
         current_user = UserModel.find_by_username(username)
         if not current_user:
             return {'message': f'User {username} doesn\'t exist'}
-        if data['password'] == current_user.password:
+        if UserModel.verify_hash(data['password'], current_user.password):
             return {'message': f'Logged in as {username}'}
         else:
             return {'message': "Wrong credentials"}
