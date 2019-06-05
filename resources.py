@@ -53,10 +53,10 @@ class TokenRefresh(Resource):
 
 class AllUsers(Resource):
     def get(self):
-        return {'message': 'List of users'}
+        return UserModel.return_all()
 
     def delete(self):
-        return {'message': 'Delete all users'}
+        return UserModel.delete_all()
 
 
 class SecretResource(Resource):

@@ -15,3 +15,23 @@ class UserModel(db.Model):
     @classmethod
     def find_by_username(cls, username):
         return cls.query.filter_by(username=username).first()
+
+
+    @classmethod
+    def return_all(cls):
+        def to_json(x):
+            return {
+                'username': x.username,
+                'password': x.password
+            }
+        return {'users': [to_json(user) for user in UserModel.query.all()]}
+
+
+    @classmethod
+    def delete_all(cls):
+        try:
+            num_rows_deleted = db.session.query(cls).delete()
+            db.session.commit()
+            return {'message': f'{num_rows_deleted} row(s) deleted'}
+        except:
+            return {'message': 'Something went wrong'}
