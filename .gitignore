@@ -1,6 +1,14 @@
 
-# Created by https://www.gitignore.io/api/linux,macos,flask,python,windows,pycharm+all
-# Edit at https://www.gitignore.io/?templates=linux,macos,flask,python,windows,pycharm+all
+# Created by https://www.gitignore.io/api/linux,macos,flask,python,windows,database,pycharm+all
+# Edit at https://www.gitignore.io/?templates=linux,macos,flask,python,windows,database,pycharm+all
+
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
 
 ### Flask ###
 instance/*
@@ -341,4 +349,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/linux,macos,flask,python,windows,pycharm+all
+# End of https://www.gitignore.io/api/linux,macos,flask,python,windows,database,pycharm+all
